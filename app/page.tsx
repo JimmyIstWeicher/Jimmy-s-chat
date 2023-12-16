@@ -59,7 +59,7 @@ export default function Home() {
   };
 
   return (
-    <div  className="flex-1 p-2 sm:p-6 justify-between flex flex-col h-screen bg-base-100">
+    <div className="flex-1 p-2 sm:p-6 justify-between flex flex-col h-screen bg-base-100">
       <Profile />
       <div
         id="messages"
@@ -79,12 +79,23 @@ export default function Home() {
             onSubmit={handleSendMessage}
             className="flex items-center justify-center w-screen"
           >
-            <input
-              id="messageInput"
-              type="text"
-              placeholder="Schreibe deine Nachricht!"
-              className="w-full focus:outline-none bg-base-100	shadow-md pl-5 rounded-tl-full rounded-bl-full py-3"
+            {messages.length > 1 ? (
+              <input
+                id="messageInput"
+                type="text"
+                placeholder="Schreibe deine Nachricht!"
+                className="w-full focus:outline-none bg-base-100 shadow-md pl-5 rounded-tl-full rounded-bl-full py-3"
               />
+            ) : (
+              <input
+                disabled
+                id="messageInput"
+                type="text"
+                placeholder="Warte auf Jimmy!"
+                className="w-full focus:outline-none bg-base-100 shadow-md pl-5 rounded-tl-full rounded-bl-full py-3"
+              />
+            )}
+
             <button
               type="submit"
               className="inline-flex items-center justify-center rounded-tr-full rounded-br-full px-4 py-3 btn-neutral btn "
