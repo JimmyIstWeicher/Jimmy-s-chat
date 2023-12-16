@@ -9,7 +9,8 @@ export const metadata: Metadata = {
   description: 'Sprich mit Jimmy',
   manifest: "/manifest.json",
   icons: {apple: "/icon.png"},
-  themeColor: "#64b5f6"
+  themeColor: "#64b5f6",
+  
 }
 
 export default function RootLayout({
@@ -19,6 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de">
+      <head>
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body data-theme="retro" className={inter.className}>{children}</body>
     </html>
   )
