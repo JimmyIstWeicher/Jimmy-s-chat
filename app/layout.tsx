@@ -5,7 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'JiChat',
+  title: 'JimmyChat',
   description: 'Sprich mit Jimmy',
   manifest: "/manifest.json",
   icons: {apple: "/icon.png"},
