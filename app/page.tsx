@@ -59,7 +59,7 @@ export default function Home() {
   };
 
   return (
-    <div  className="flex-1 p-2 sm:p-6 justify-between flex flex-col h-screen bg-base">
+    <div  className="flex-1 p-2 sm:p-6 justify-between flex flex-col h-screen bg-base-100">
       <Profile />
       <div
         id="messages"
@@ -83,7 +83,7 @@ export default function Home() {
               id="messageInput"
               type="text"
               placeholder="Schreibe deine Nachricht!"
-              className="w-full focus:outline-none bg-base	shadow-md pl-5 rounded-tl-full rounded-bl-full py-3"
+              className="w-full focus:outline-none bg-base-100	shadow-md pl-5 rounded-tl-full rounded-bl-full py-3"
               />
             <button
               type="submit"
