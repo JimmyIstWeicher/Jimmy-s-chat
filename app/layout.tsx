@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Sprich mit Jimmy',
   manifest: "/manifest.json",
   icons: {apple: "/icon.png"},
-  themeColor: "#64b5f6",
+  themeColor: "#dc8850",
   
 }
 
