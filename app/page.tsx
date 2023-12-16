@@ -89,7 +89,7 @@ export default function Home() {
               type="submit"
               className="inline-flex items-center justify-center rounded-tr-full rounded-br-full px-4 py-3 btn-neutral btn "
             >
-              <span className="font-bold pr-2">Send</span>
+              <span className="font-bold pr-2">Senden</span>
               <ChevronRight />
             </button>
           </form>
