@@ -1,10 +1,38 @@
-import React from "react";
-import Speech from "react-text-to-speech";
+import React, { useState, useEffect } from "react";
 import { Play, Pause, X } from "react-feather";
+
 const MessageJimmy = ({ children, lesenachricht }) => {
-  const startBtn = <Play></Play>;
-  const pauseBtn = <Pause></Pause>;
-  const stopBtn = <X></X>;
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [utterance, setUtterance] = useState(null);
+
+  useEffect(() => {
+    if (isPlaying) {
+      const speech = new SpeechSynthesisUtterance(lesenachricht);
+      speech.onend = () => {
+        setIsPlaying(false);
+      };
+      speech.onerror = () => {
+        setIsPlaying(false);
+      };
+      setUtterance(speech);
+      speechSynthesis.speak(speech);
+    } else if (utterance) {
+      // Stopping speech if the component unmounts or isPlaying becomes false
+      speechSynthesis.cancel();
+    }
+
+    return () => {
+      // Cleanup: Cancel speech when the component unmounts
+      if (utterance) {
+        speechSynthesis.cancel();
+      }
+    };
+  }, [isPlaying, utterance, lesenachricht]);
+
+  const togglePlayback = () => {
+    setIsPlaying((prevState) => !prevState);
+  };
+
   return (
     <div className="chat-message">
       <div className="flex items-end">
@@ -12,14 +40,11 @@ const MessageJimmy = ({ children, lesenachricht }) => {
           <div>
             <span className="px-4 py-2 rounded-3xl inline-block rounded-bl-none chat-bubble-accent">
               {children}
-              <Speech
-                text={lesenachricht}
-                startBtn={startBtn}
-                pauseBtn={pauseBtn}
-                stopBtn={stopBtn}
-              />
             </span>
           </div>
+          <button onClick={togglePlayback}>
+            {isPlaying ? <Pause /> : <Play />}
+          </button>
         </div>
       </div>
     </div>
