@@ -24,7 +24,7 @@ export default function Home() {
     // Listen for messages
     socket.addEventListener("message", (event) => {
       const message = event.data;
-      console.log(event.data)
+      console.log(event.data);
       setMessages((prevMessages) => [
         ...prevMessages,
         { role: "jimmy", message: message },
@@ -75,13 +75,31 @@ export default function Home() {
       <Profile />
       <div
         id="messages"
-        className=" flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
+        className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
       >
         {messages.map((message, index) =>
           message.role === "jimmy" ? (
-            <MessageJimmy key={index}>{message.message}</MessageJimmy>
+            <MessageJimmy key={index}>
+              {message.message.split("\n").map((line, lineIndex) => (
+                <React.Fragment key={lineIndex}>
+                  {line}
+                  {lineIndex !== message.message.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </React.Fragment>
+              ))}
+            </MessageJimmy>
           ) : (
-            <MessageUser key={index}>{message.message}</MessageUser>
+            <MessageUser key={index}>
+              {message.message.split("\n").map((line, lineIndex) => (
+                <React.Fragment key={lineIndex}>
+                  {line}
+                  {lineIndex !== message.message.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </React.Fragment>
+              ))}
+            </MessageUser>
           )
         )}
       </div>
