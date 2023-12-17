@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Play, Pause, X } from "react-feather";
-
+import TextToSpech from "./TextToSpeech";
 const MessageJimmy = ({ children, lesenachricht }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [utterance, setUtterance] = useState(null);
@@ -40,11 +40,11 @@ const MessageJimmy = ({ children, lesenachricht }) => {
           <div>
             <span className="px-4 py-2 rounded-3xl inline-block rounded-bl-none chat-bubble-accent">
               {children}
+              <br />
+              <TextToSpech text={lesenachricht} />{" "}
+
             </span>
           </div>
-          <button onClick={togglePlayback}>
-            {isPlaying ? <Pause /> : <Play />}
-          </button>
         </div>
       </div>
     </div>
