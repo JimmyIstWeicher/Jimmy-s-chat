@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { ChevronRight, Mic, RefreshCcw } from "react-feather";
+import { ChevronRight, Send, RefreshCcw } from "react-feather";
 import Profile from "./components/Profile";
 import MessageJimmy from "./components/MessageJimmy";
 import MessageUser from "./components/MessageUser";
 
 export default function Home() {
+  const [value, setValue] = useState<string>("");
   const [messages, setMessages] = useState([
     { role: "user", message: "Ich bitte um ein Gespräch mit Jimmy" },
   ]);
@@ -80,18 +81,20 @@ export default function Home() {
           )
         )}
       </div>
-      <div className="border-t-2 border-neutral px-4 pt-4 mb-2 sm:mb-0">
+      <div className="border-t-2 border-neutral px-2 pt-4 mb-2">
         <div className="relative flex">
           <form
             onSubmit={handleSendMessage}
-            className="flex items-center justify-center w-screen"
+            className=" flex items-center justify-center w-screen"
           >
             {messages.length > 1 ? (
               <textarea
+                value={value}
                 cols={1}
+                onChange={(e) => setValue(e.target.value)}
                 id="messageInput"
                 placeholder="Schreibe deine Nachricht!"
-                className="w-full focus:outline-none bg-base-100 shadow-md pl-5 rounded-tl-full rounded-bl-full py-3"
+                className="w-full focus:outline-none glass bg-base-100 border-1 focus:shadow-sm pl-5 rounded-3xl  py-3"
               />
             ) : (
               <textarea
@@ -99,23 +102,21 @@ export default function Home() {
                 disabled
                 id="messageInput"
                 placeholder="Warte auf Jimmy!"
-                className="w-full focus:outline-none bg-base-100 shadow-md pl-5 rounded-tl-full rounded-bl-full py-3"
+                className="w-full focus:outline-none glass bg-base-100 border-1 focus:shadow-sm pl-5 rounded-3xl  py-3"
               />
             )}
-
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center rounded-full ml-5 px-4 py-3 btn-neutral btn "
-            >
-              senden
-              <ChevronRight />
-            </button>
-            <button
-              onClick={reload}
-              className="btn btn-circle btn-neutral ml-5"
-            >
-              <RefreshCcw />
-            </button>
+            {value.length > 0 ? (
+              <button type="submit" className="btn-circle btn-neutral btn ml-2">
+                <Send />
+              </button>
+            ) : (
+              <button
+                onClick={reload}
+                className="btn btn-circle btn-neutral ml-2"
+              >
+                <RefreshCcw />
+              </button>
+            )}
           </form>
         </div>
       </div>
