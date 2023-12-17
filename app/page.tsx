@@ -64,7 +64,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex-1 p-2 sm:p-6 justify-between flex flex-col h-screen bg-base-100">
+    <div  className="h-[100svh] flex-1 p-2 sm:p-6 justify-between flex flex-col bg-base-100">
       <Profile />
       <div
         id="messages"
