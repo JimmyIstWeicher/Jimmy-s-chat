@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { ChevronRight, Send, RefreshCcw } from "react-feather";
+import { Send, RefreshCcw } from "react-feather";
 import Profile from "./components/Profile";
 import MessageJimmy from "./components/MessageJimmy";
 import MessageUser from "./components/MessageUser";
@@ -79,7 +79,7 @@ export default function Home() {
       >
         {messages.map((message, index) =>
           message.role === "jimmy" ? (
-            <MessageJimmy key={index}>
+            <MessageJimmy lesenachricht={message.message} key={index}>
               {message.message.split("\n").map((line, lineIndex) => (
                 <React.Fragment key={lineIndex}>
                   {line}

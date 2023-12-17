@@ -1,7 +1,7 @@
 import React from "react";
 import Speech from "react-text-to-speech";
 import { Play, Pause, X } from "react-feather";
-const MessageJimmy = ({ children }) => {
+const MessageJimmy = ({ children, lesenachricht }) => {
   const startBtn = <Play></Play>;
   const pauseBtn = <Pause></Pause>;
   const stopBtn = <X></X>;
@@ -13,7 +13,7 @@ const MessageJimmy = ({ children }) => {
             <span className="px-4 py-2 rounded-3xl inline-block rounded-bl-none chat-bubble-accent">
               {children}
               <Speech
-                text={children}
+                text={lesenachricht}
                 startBtn={startBtn}
                 pauseBtn={pauseBtn}
                 stopBtn={stopBtn}
