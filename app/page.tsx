@@ -53,6 +53,8 @@ export default function Home() {
 
     if (inputElement && inputElement.value.trim() !== "") {
       const message = inputElement.value.trim();
+      console.log(message);
+
       setMessages((prevMessages) => [
         ...prevMessages,
         { role: "user", message: message },
