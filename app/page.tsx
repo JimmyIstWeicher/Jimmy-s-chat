@@ -38,10 +38,10 @@ export default function Home() {
     };
   }, []);
 
-  const reload = ()  => {
-    console.log('test')
+  const reload = () => {
+    console.log("test");
     location.reload();
-  }
+  };
 
   const handleSendMessage = (event: React.FormEvent) => {
     event.preventDefault(); // Prevent the default form submission behavior
@@ -63,8 +63,10 @@ export default function Home() {
     }
   };
 
+  // run this function from an event handler or an effect to execute scroll
+
   return (
-    <div  className="h-[100svh] flex-1 p-2 sm:p-6 justify-between flex flex-col bg-base-100">
+    <div className="h-[100svh] flex-1 p-2 sm:p-6 justify-between flex flex-col bg-base-100">
       <Profile />
       <div
         id="messages"
@@ -85,17 +87,17 @@ export default function Home() {
             className="flex items-center justify-center w-screen"
           >
             {messages.length > 1 ? (
-              <input
+              <textarea
+                cols={1}
                 id="messageInput"
-                type="text"
                 placeholder="Schreibe deine Nachricht!"
                 className="w-full focus:outline-none bg-base-100 shadow-md pl-5 rounded-tl-full rounded-bl-full py-3"
               />
             ) : (
-              <input
+              <textarea
+                cols={1}
                 disabled
                 id="messageInput"
-                type="text"
                 placeholder="Warte auf Jimmy!"
                 className="w-full focus:outline-none bg-base-100 shadow-md pl-5 rounded-tl-full rounded-bl-full py-3"
               />
@@ -103,13 +105,15 @@ export default function Home() {
 
             <button
               type="submit"
-              className="inline-flex items-center justify-center rounded-tr-full rounded-br-full px-4 py-3 btn-neutral btn "
+              className="inline-flex items-center justify-center rounded-full ml-5 px-4 py-3 btn-neutral btn "
             >
               senden
-              <ChevronRight/>
-                
+              <ChevronRight />
             </button>
-            <button onClick={reload} className="btn btn-circle btn-neutral ml-5">
+            <button
+              onClick={reload}
+              className="btn btn-circle btn-neutral ml-5"
+            >
               <RefreshCcw />
             </button>
           </form>
