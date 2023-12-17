@@ -9,10 +9,10 @@ const TextToSpeech = ({ text }) => {
 
   useEffect(() => {
     const synth = window.speechSynthesis;
-    
+
     const u = new SpeechSynthesisUtterance(text);
-    u.lang="de-DE"
-    
+    u.lang = "de-DE";
+
     // Set the onend event to handle when speech finishes
     u.onend = () => {
       setIsPlaying(false);
@@ -28,6 +28,18 @@ const TextToSpeech = ({ text }) => {
 
   const handlePlay = () => {
     const synth = window.speechSynthesis;
+
+    // Set the voice
+    speechSynthesis.getVoices().forEach(function (voice, index) {
+      console.log(voice.lang);
+
+      if (
+        (voice.lang === "de-DE" && voice.name.toLowerCase().includes("male")) ||
+        voice.name.toLowerCase().includes("killian")
+      ) {
+        utterance.voice = voice;
+      }
+    });
 
     if (isPaused) {
       synth.resume();
