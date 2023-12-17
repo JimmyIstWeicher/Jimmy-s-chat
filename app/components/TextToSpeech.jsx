@@ -9,8 +9,10 @@ const TextToSpeech = ({ text }) => {
 
   useEffect(() => {
     const synth = window.speechSynthesis;
+    
     const u = new SpeechSynthesisUtterance(text);
-
+    u.lang="de-DE"
+    
     // Set the onend event to handle when speech finishes
     u.onend = () => {
       setIsPlaying(false);
