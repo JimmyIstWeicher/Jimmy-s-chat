@@ -24,6 +24,7 @@ export default function Home() {
     // Listen for messages
     socket.addEventListener("message", (event) => {
       const message = event.data;
+      console.log(event.data)
       setMessages((prevMessages) => [
         ...prevMessages,
         { role: "jimmy", message: message },
