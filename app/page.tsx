@@ -62,6 +62,7 @@ export default function Home() {
       }
       inputElement.value = "";
     }
+    setValue("");
   };
 
   // run this function from an event handler or an effect to execute scroll
