@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { FaPlay, FaPause, FaStop } from "react-icons/fa";
+import { FaPlay, FaPause, FaStop, FaRegCopy } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const TextToSpeech = ({ text }) => {
   const [isPaused, setIsPaused] = useState(false);
@@ -74,6 +75,11 @@ const TextToSpeech = ({ text }) => {
       value={{ size: "1.5em", className: "global-class-name" }}
     >
       <div className="flex items-center justify-start gap-3">
+        <CopyToClipboard text={text}>
+          <button>
+            <FaRegCopy />
+          </button>
+        </CopyToClipboard>
         {isPlaying ? (
           <button onClick={handlePause}>
             <FaPause />{" "}
