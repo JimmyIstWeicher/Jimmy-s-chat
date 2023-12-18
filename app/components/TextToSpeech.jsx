@@ -76,20 +76,20 @@ const TextToSpeech = ({ text }) => {
     >
       <div className="flex items-center justify-start gap-3">
         <CopyToClipboard text={text}>
-          <button className="btn btn-ghost  btn-circle">
+          <button className="btn glass  btn-circle">
             <FaRegCopy />
           </button>
         </CopyToClipboard>
         {isPlaying ? (
-          <button className="btn btn-ghost  btn-circle" onClick={handlePause}>
+          <button className="btn glass  btn-circle" onClick={handlePause}>
             <FaPause />{" "}
           </button>
         ) : (
-          <button className="btn btn-ghost  btn-circle" onClick={handlePlay}>
+          <button className="btn glass  btn-circle" onClick={handlePlay}>
             <FaPlay />
           </button>
         )}
-        <button className="btn btn-ghost  btn-circle" onClick={handleStop}>
+        <button className="btn glass  btn-circle" onClick={handleStop}>
           <FaStop />
         </button>
       </div>
