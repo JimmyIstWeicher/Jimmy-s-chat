@@ -1,37 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Play, Pause, X } from "react-feather";
-import TextToSpech from "./TextToSpeech";
+import TextToSpeech from "./TextToSpeech"; // Fix the import statement to match the actual component name
+
 const MessageJimmy = ({ children, lesenachricht }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [utterance, setUtterance] = useState(null);
+  const [isSupported, setIsSupported] = useState(false);
 
   useEffect(() => {
-    if (isPlaying) {
-      const speech = new SpeechSynthesisUtterance(lesenachricht);
-      speech.onend = () => {
-        setIsPlaying(false);
-      };
-      speech.onerror = () => {
-        setIsPlaying(false);
-      };
-      setUtterance(speech);
-      speechSynthesis.speak(speech);
-    } else if (utterance) {
-      // Stopping speech if the component unmounts or isPlaying becomes false
-      speechSynthesis.cancel();
+    // Check if 'speechSynthesis' is supported in the window object
+    if ('speechSynthesis' in window) {
+      setIsSupported(true);
+    } else {
+      // Speech Synthesis Not Supported 😣
+      setIsSupported(false);
+      alert("Sorry, your browser doesn't support text to speech!");
     }
-
-    return () => {
-      // Cleanup: Cancel speech when the component unmounts
-      if (utterance) {
-        speechSynthesis.cancel();
-      }
-    };
-  }, [isPlaying, utterance, lesenachricht]);
-
-  const togglePlayback = () => {
-    setIsPlaying((prevState) => !prevState);
-  };
+  }, []); // Empty dependency array to run the effect only once on component mount
 
   return (
     <div className="chat-message">
@@ -41,8 +24,7 @@ const MessageJimmy = ({ children, lesenachricht }) => {
             <span className="px-4 py-2 rounded-3xl inline-block rounded-bl-none chat-bubble-accent">
               {children}
               <br />
-              <TextToSpech text={lesenachricht} />{" "}
-
+              {isSupported ? <TextToSpeech text={lesenachricht} /> : null}
             </span>
           </div>
         </div>
